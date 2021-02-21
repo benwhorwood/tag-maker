@@ -8,9 +8,24 @@ Download from http://example.com/FIXME.
 
 ## Usage
 
-FIXME: explanation
+Generate 3 tags and print to stdout:
 
-    $ java -jar tag-0.1.0-standalone.jar [args]
+    $ java -jar tag-0.1.0-SNAPSHOT-standalone.jar 3 "-"
+
+```
+dancing-doggy-doggie
+smiling-llama-yokohama
+smiling-mule-vestibule
+```
+
+Add final "-v" arg to print out additional information:
+
+    $ java -jar tag-0.1.0-SNAPSHOT-standalone.jar 3 "-" -v
+    
+```
+tag maker running with config: {:num-rhymes 3, :separator "", :verbose? "-v"}
+...
+```
 
 ## Options
 
