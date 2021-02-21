@@ -5,6 +5,7 @@
             :url "https://www.eclipse.org/legal/epl-2.0/"}
   :dependencies [[org.clojure/clojure "1.10.1"]
                  [metosin/jsonista "0.3.1"]
+                 [mount/mount "0.1.6"]
 
                  ;; REBL for this project
                  ;; https://github.com/DaveWM/nrepl-rebl
@@ -17,8 +18,8 @@
                  [nrepl-rebl "0.1.1"]
                  [com.cognitect/rebl "0.9.242"]]
   :main ^:skip-aot tag.core
-  :repl-options {;;:init-ns enuf.repl
-                 ;;:init (start)
+  :repl-options {:init-ns tag.repl
+                 :init (repl-start)
                  :nrepl-middleware [nrepl-rebl.core/wrap-rebl]}
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all

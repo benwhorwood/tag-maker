@@ -1,25 +1,38 @@
 (ns tag.db
-  (:require [jsonista.core :as json]
+  (:require [mount.core :refer [defstate]]
+            [clojure.java.io :as io]
+            [clojure.string :as string]
+            [jsonista.core :as json]
             [tag.fetch :as fetch]))
 
-(def animals
-  ["goat"
-   "donkey"
-   "frog"
-   "mule"
-   "doggy"
-   "llama"
-   "cat"
-   "newt"])
+(defn- read-json
+  [f]
+  (json/read-value (slurp (io/resource f))))
 
-(def actions
-  ["yawning"
-   "poking"
-   "dancing"
-   "smiling"
-   "eating"
-   "jesting"
-   "gigging"])
+(defstate animals
+  :start (read-json "animals.json"))
+
+(defstate animals-rhyming
+  :start (read-json "animals_rhyming.json"))
+
+(defstate actions
+  :start (read-json "actions.json"))
+
+
+(defn rhyme-parts
+  "Parts of a single rhyme"
+  [animals animals-rhyming actions]
+  (let [animal (rand-nth animals)]
+    [(rand-nth actions)
+     animal
+     (rand-nth (get animals-rhyming animal))]))
+
+(defn rhyme
+  ([sep]
+   (string/join sep (rhyme-parts animals animals-rhyming actions)))
+  
+  ([]
+   (rhyme " ")))
 
 
 (defn rhyming-words
