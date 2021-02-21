@@ -1,6 +1,6 @@
-# tag
+# tag - tag maker for points of discussion (and other things)
 
-FIXME: description
+Create tags to use during recordings as tags for points of discussions, etc. Add tags to docs, code, etc, as breadcrumbs to find everything you need when rewatching / developing.
 
 ## Installation
 
